@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="585.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.MemberAddController">
+<AnchorPane prefHeight="398.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.MemberAddController">
    <children>
-      <Label layoutX="222.0" layoutY="26.0" text="Create Member" />
+      <Label layoutX="168.0" layoutY="27.0" text="Create Member" />
       <Label layoutX="82.0" layoutY="83.0" text="Member Id:" />
       <TextField fx:id="txtId" layoutX="189.0" layoutY="79.0" prefHeight="25.0" prefWidth="187.0" promptText="Please Enter Member Id" />
       <Label layoutX="82.0" layoutY="124.0" text="First Name:" />
@@ -15,10 +16,13 @@
       <Label layoutX="82.0" layoutY="195.0" text="Street:" />
       <Label layoutX="82.0" layoutY="226.0" text="City:" />
       <Label layoutX="82.0" layoutY="258.0" text="State:" />
-      <Label layoutX="82.0" layoutY="286.0" text="Telephone:" />
+      <Label layoutX="82.0" layoutY="289.0" text="Telephone:" />
       <TextField fx:id="txtLastName" layoutX="189.0" layoutY="158.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter Last name" />
       <TextField fx:id="txtStreet" layoutX="189.0" layoutY="191.0" prefHeight="25.0" prefWidth="187.0" promptText="Street Address" />
       <TextField fx:id="txtCity" layoutX="189.0" layoutY="222.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter City" />
-      <TextField layoutX="189.0" layoutY="254.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="txtState" layoutX="189.0" layoutY="254.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter State" />
+      <TextField fx:id="txtTelephone" layoutX="189.0" layoutY="285.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter Telephone Number" />
+      <Button fx:id="btnSave" layoutX="189.0" layoutY="327.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="btnClear" layoutX="239.0" layoutY="327.0" mnemonicParsing="false" text="Clearn" />
    </children>
 </AnchorPane>
