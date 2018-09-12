@@ -1,5 +1,7 @@
 package dataaccess;
 
+import javafx.scene.control.Alert;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,16 @@ public class DataStorageFactory {
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(members);
             oos.close();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            String txt = "Current Members Are: \n";
+            for (LibraryMember member : members) {
+                txt = txt + member.getFirstName() + "-" + member.getLastName() + "\n";
+            }
+            alert.setTitle("Success");
+            alert.setHeaderText("Member Created");
+            alert.setContentText("Successfully created a Library Member\n" + txt);
+            alert.showAndWait();
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }

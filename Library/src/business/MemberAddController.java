@@ -3,10 +3,10 @@ package business;
 import dataaccess.Address;
 import dataaccess.DataStorageFactory;
 import dataaccess.LibraryMember;
+import javafx.event.Event;
 import javafx.fxml.FXML;
-
-import javafx.scene.control.*;
-import javafx.event.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class MemberAddController {
 
@@ -46,6 +46,7 @@ public class MemberAddController {
         address.setZip(txtZip.getText());
         member.setAddress(address);
         DataStorageFactory.saveMemebr(member);
+
 
     }
 
