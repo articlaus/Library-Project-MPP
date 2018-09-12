@@ -1,5 +1,8 @@
 package business;
 
+import dataaccess.Address;
+import dataaccess.DataStorageFactory;
+import dataaccess.LibraryMember;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
@@ -22,13 +25,28 @@ public class MemberAddController {
     @FXML
     private TextField txtTelephone;
     @FXML
+    private TextField txtZip;
+    @FXML
     private Button btnSave;
     @FXML
     private Button btnClear;
 
     @FXML
     public void createMember(Event e) {
-        System.out.println(txtId.getText());
+        LibraryMember member = new LibraryMember();
+        member.setMemberId(Long.valueOf(txtId.getText()));
+        member.setFirstName(txtFirstName.getText());
+        member.setLastName(txtLastName.getText());
+        member.setPhoneNumber(txtTelephone.getText());
+
+        Address address = new Address();
+        address.setCity(txtCity.getText());
+        address.setState(txtState.getText());
+        address.setStreet(txtStreet.getText());
+        address.setZip(txtZip.getText());
+        member.setAddress(address);
+        DataStorageFactory.saveMemebr(member);
+
     }
 
 
