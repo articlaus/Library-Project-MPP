@@ -1,4 +1,4 @@
-package ui;
+package business;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
