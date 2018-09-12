@@ -29,4 +29,9 @@ public class Author extends Person {
     public void setShortBio(String shortBio) {
         this.shortBio = shortBio;
     }
+
+    @Override
+    public String toString() {
+        return getFirstName() + " " + getLastName();
+    }
 }

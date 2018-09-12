@@ -51,7 +51,7 @@ public class AddCopyController {
                     authors = authors + author.getFirstName() + " " + author.getLastName() + ",";
                 }
                 lblAuthors.setText(authors);
-                lblAvailable.setText(book.getCounts() + "");
+                lblAvailable.setText(book.getNumberOfCopies() + "");
                 this.book = book;
             }
         }
@@ -73,8 +73,8 @@ public class AddCopyController {
                 alert.setContentText("You must enter the number of copies to add\n");
                 alert.showAndWait();
             } else {
-                book.setCounts(Integer.valueOf(txtCopies.getText()));
-                DataStorageFactory.addBook(book);
+                book.setNumberOfCopies(Integer.valueOf(txtCopies.getText()));
+                DataStorageFactory.addCopyBook(book);
             }
         }
 

@@ -9,7 +9,8 @@ public class Book implements Serializable {
     private List<Author> authors;
     private String title;
     private Boolean availability;
-    private Integer counts;
+    private Integer numberOfCopies;
+    private Integer checkOutDay;
 
     public Book() {
     }
@@ -62,11 +63,32 @@ public class Book implements Serializable {
         this.availability = availability;
     }
 
-    public Integer getCounts() {
-        return counts;
+    public Integer getNumberOfCopies() {
+        return numberOfCopies;
     }
 
-    public void setCounts(Integer counts) {
-        this.counts = counts;
+    public void setNumberOfCopies(Integer numberOfCopies) {
+        this.numberOfCopies = numberOfCopies;
+    }
+
+    public Integer getCheckOutDay() {
+        return checkOutDay;
+    }
+
+    public void setCheckOutDay(Integer checkOutDay) {
+        this.checkOutDay = checkOutDay;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "copyNumber='" + copyNumber + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", authors=" + authors +
+                ", title='" + title + '\'' +
+                ", availability=" + availability +
+                ", numberOfCopies=" + numberOfCopies +
+                ", checkOutDay=" + checkOutDay +
+                '}';
     }
 }

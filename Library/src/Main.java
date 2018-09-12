@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         DataStorageFactory.createInitialData();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("ui/AddCopyWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("ui/AddBookWindow.fxml"));
         primaryStage.setTitle("Testing");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
