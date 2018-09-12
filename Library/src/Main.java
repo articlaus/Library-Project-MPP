@@ -1,3 +1,4 @@
+import dataaccess.DataStorageFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        DataStorageFactory.createInitialData();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("ui/MemberAddWindow.fxml"));
         primaryStage.setTitle("Testing");
         primaryStage.setScene(new Scene(root));

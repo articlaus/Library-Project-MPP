@@ -2,7 +2,7 @@ package dataaccess;
 
 public class LibraryMember extends Person {
 
-    Long memberId;
+    private Long memberId;
 
     public Long getMemberId() {
         return memberId;

@@ -3,10 +3,10 @@ package dataaccess;
 import java.io.Serializable;
 
 public class Person implements Serializable {
-    String firstName;
-    String lastName;
-    String phoneNumber;
-    Address address;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private Address address;
 
     public Person() {
     }

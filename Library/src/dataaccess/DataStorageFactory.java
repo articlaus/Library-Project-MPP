@@ -24,5 +24,27 @@ public class DataStorageFactory {
         }
     }
 
+    /**
+     * Write the Initial Value here
+     */
+    public static void createInitialData() {
+        try {
 
+            List<LibraryMember> members = new ArrayList<>();
+            LibraryMember member = new LibraryMember();
+            member.setMemberId(1L);
+            member.setFirstName("Ganbat");
+            member.setLastName("Bayar");
+            member.setPhoneNumber("123");
+            member.setAddress(new Address("1000N 4th Street", "Fairfield", "IA", "52557"));
+            members.add(member);
+            FileOutputStream fos = new FileOutputStream(OUTPUT_DIR + "LibraryMember.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(members);
+            oos.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }
