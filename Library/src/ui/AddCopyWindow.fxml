@@ -5,20 +5,22 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="295.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.AddCopyController">
-   <children>
-      <Label layoutX="145.0" layoutY="14.0" text="Add New Book Copy" />
-      <Label layoutX="70.0" layoutY="59.0" text="ISBN Number :" />
-      <TextField fx:id="txtISBN" layoutX="173.0" layoutY="55.0" promptText="ISBN Number to Search" />
-      <Label layoutX="70.0" layoutY="105.0" text="Title :" />
-      <Label layoutX="70.0" layoutY="139.0" text="Authors :" />
-      <Label layoutX="70.0" layoutY="170.0" text="Availability :" />
-      <Label layoutX="69.0" layoutY="200.0" text="Copies to Add :" />
-      <TextField fx:id="txtCopies" layoutX="173.0" layoutY="196.0" promptText="Number of Copies" />
-      <Label fx:id="lblTitle" layoutX="173.0" layoutY="105.0" text="N/A" />
-      <Label fx:id="lblAuthors" layoutX="173.0" layoutY="139.0" text="N/A" />
-      <Label fx:id="lblAvailable" layoutX="173.0" layoutY="170.0" text="N/A" />
-      <Button fx:id="btnSreach" layoutX="334.0" layoutY="55.0" mnemonicParsing="false" text="+" />
-      <Button fx:id="btnAdd" layoutX="169.0" layoutY="240.0" mnemonicParsing="false" text="Add Copies" />
-   </children>
+<AnchorPane prefHeight="295.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.AddCopyController">
+    <children>
+        <Label layoutX="145.0" layoutY="14.0" text="Add New Book Copy"/>
+        <Label layoutX="70.0" layoutY="59.0" text="ISBN Number :"/>
+        <TextField fx:id="txtISBN" layoutX="173.0" layoutY="55.0" promptText="ISBN Number to Search"/>
+        <Label layoutX="70.0" layoutY="105.0" text="Title :"/>
+        <Label layoutX="70.0" layoutY="139.0" text="Authors :"/>
+        <Label layoutX="70.0" layoutY="170.0" text="Availability :"/>
+        <Label layoutX="69.0" layoutY="200.0" text="Copies to Add :"/>
+        <TextField fx:id="txtCopies" layoutX="173.0" layoutY="196.0" promptText="Number of Copies"/>
+        <Label fx:id="lblTitle" layoutX="173.0" layoutY="105.0" text="N/A"/>
+        <Label fx:id="lblAuthors" layoutX="173.0" layoutY="139.0" text="N/A"/>
+        <Label fx:id="lblAvailable" layoutX="173.0" layoutY="170.0" text="N/A"/>
+        <Button fx:id="btnSearch" onAction="#searchBook" layoutX="334.0" layoutY="55.0" mnemonicParsing="false"
+                text="+"/>
+        <Button fx:id="btnAdd" layoutX="169.0" layoutY="240.0" mnemonicParsing="false" text="Add Copies"/>
+    </children>
 </AnchorPane>

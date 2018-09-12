@@ -3,8 +3,10 @@ package business;
 import dataaccess.Address;
 import dataaccess.DataStorageFactory;
 import dataaccess.LibraryMember;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -47,7 +49,7 @@ public class MemberAddController {
         member.setAddress(address);
         DataStorageFactory.saveMemebr(member);
 
-
+        ((Node) (e.getSource())).getScene().getWindow().hide();
     }
 
 
