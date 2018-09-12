@@ -12,8 +12,11 @@ import javafx.scene.control.TextField;
 
 public class AddCopyController {
 
+    Book book;
     @FXML
     TextField txtISBN;
+    @FXML
+    TextField txtCopies;
     @FXML
     Label lblTitle;
     @FXML
@@ -48,9 +51,33 @@ public class AddCopyController {
                     authors = authors + author.getFirstName() + " " + author.getLastName() + ",";
                 }
                 lblAuthors.setText(authors);
-                lblAvailable.setText(book.getAvailability().toString());
+                lblAvailable.setText(book.getCounts() + "");
+                this.book = book;
             }
         }
+    }
+
+    @FXML
+    public void addCopies() {
+        if (book == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Not Found");
+            alert.setHeaderText("Must Search first");
+            alert.setContentText("YOu need to select a book first before adding copies\n");
+            alert.showAndWait();
+        } else {
+            if (txtCopies.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Text Empty");
+                alert.setHeaderText("# Copies field Empty");
+                alert.setContentText("You must enter the number of copies to add\n");
+                alert.showAndWait();
+            } else {
+                book.setCounts(Integer.valueOf(txtCopies.getText()));
+                DataStorageFactory.addBook(book);
+            }
+        }
+
     }
 
 

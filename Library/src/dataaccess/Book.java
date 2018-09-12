@@ -9,6 +9,7 @@ public class Book implements Serializable {
     private List<Author> authors;
     private String title;
     private Boolean availability;
+    private Integer counts;
 
     public Book() {
     }
@@ -59,5 +60,13 @@ public class Book implements Serializable {
 
     public void setAvailability(Boolean availability) {
         this.availability = availability;
+    }
+
+    public Integer getCounts() {
+        return counts;
+    }
+
+    public void setCounts(Integer counts) {
+        this.counts = counts;
     }
 }

@@ -54,15 +54,40 @@ public class DataStorageFactory {
             FileInputStream fix = new FileInputStream(new File(OUTPUT_DIR + "Book.txt"));
             ObjectInputStream ois = new ObjectInputStream(fix);
             books = (List<Book>) ois.readObject();
+            Book ret = null;
+            Integer count = 0;
             for (Book book : books) {
                 if (book.getIsbn().toLowerCase().equals(isbn.toLowerCase())) {
-                    return book;
+                    ret = book;
+                    count++;
                 }
             }
-            return null;
+            if (ret != null)
+                ret.setCounts(count);
+            return ret;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
+        }
+    }
+
+    public static void addBook(Book book) {
+        try {
+            List<Book> books;
+            FileInputStream fix = new FileInputStream(new File(OUTPUT_DIR + "Book.txt"));
+            ObjectInputStream ois = new ObjectInputStream(fix);
+            books = (List<Book>) ois.readObject();
+            for (int i = 0; i < book.getCounts(); i++) {
+                Book bk = book;
+                bk.setCopyNumber(UUID.randomUUID().toString());
+                books.add(bk);
+            }
+            FileOutputStream fos = new FileOutputStream(OUTPUT_DIR + "Book.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(books);
+            oos.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

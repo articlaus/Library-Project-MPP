@@ -13,14 +13,15 @@
         <TextField fx:id="txtISBN" layoutX="173.0" layoutY="55.0" promptText="ISBN Number to Search"/>
         <Label layoutX="70.0" layoutY="105.0" text="Title :"/>
         <Label layoutX="70.0" layoutY="139.0" text="Authors :"/>
-        <Label layoutX="70.0" layoutY="170.0" text="Availability :"/>
+        <Label layoutX="70.0" layoutY="170.0" text="# Copies :"/>
         <Label layoutX="69.0" layoutY="200.0" text="Copies to Add :"/>
         <TextField fx:id="txtCopies" layoutX="173.0" layoutY="196.0" promptText="Number of Copies"/>
         <Label fx:id="lblTitle" layoutX="173.0" layoutY="105.0" text="N/A"/>
         <Label fx:id="lblAuthors" layoutX="173.0" layoutY="139.0" text="N/A"/>
         <Label fx:id="lblAvailable" layoutX="173.0" layoutY="170.0" text="N/A"/>
-        <Button fx:id="btnSearch" onAction="#searchBook" layoutX="334.0" layoutY="55.0" mnemonicParsing="false"
+        <Button fx:id="btnSearch" layoutX="334.0" layoutY="55.0" mnemonicParsing="false" onAction="#searchBook"
                 text="+"/>
-        <Button fx:id="btnAdd" layoutX="169.0" layoutY="240.0" mnemonicParsing="false" text="Add Copies"/>
+        <Button fx:id="btnAdd" onAction="#addCopies" layoutX="169.0" layoutY="240.0" mnemonicParsing="false"
+                text="Add Copies"/>
     </children>
 </AnchorPane>
