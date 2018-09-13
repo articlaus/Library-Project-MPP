@@ -9,11 +9,12 @@ import java.util.UUID;
 
 public class DataStorageFactory {
 
-    private static String OUTPUT_DIR = System.getProperty("user.dir") + "/src/dataaccess/storage/";
+    private static String OUTPUT_DIR = System.getProperty("user.dir") + "/Library/src/dataaccess/storage/";
     private static String LIB_MEM = "LibraryMember.txt";
     private static String BKS = "Book.txt";
     private static String AUTH = "Author.txt";
     private static String EMPL = "Employees.txt";
+    private static String CHK = "CheckoutEntry.txt";
 
     /**
      * Method that handles every read Operation
@@ -43,7 +44,6 @@ public class DataStorageFactory {
     public static void write(List<?> datas, String fileName) {
         try {
             FileOutputStream fos = new FileOutputStream(OUTPUT_DIR + fileName);
-            System.out.println("Writing to " + OUTPUT_DIR + fileName);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(datas);
             oos.close();
@@ -54,7 +54,7 @@ public class DataStorageFactory {
 
     public static void saveMember(LibraryMember libraryMember) {
         @SuppressWarnings("unchecked")
-		List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
+        List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
         members.add(libraryMember);
         write(members, LIB_MEM);
         readMember();
@@ -62,7 +62,7 @@ public class DataStorageFactory {
 
     public static void readMember() {
         @SuppressWarnings("unchecked")
-		List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
+        List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         String txt = "Current Members Are: \n";
         for (LibraryMember member : members) {
@@ -76,7 +76,7 @@ public class DataStorageFactory {
 
     public static Book getBookByIsnb(String isbn) {
         @SuppressWarnings("unchecked")
-		List<Book> books = (List<Book>) read(BKS);
+        List<Book> books = (List<Book>) read(BKS);
         Book ret = null;
         Integer count = 0;
         for (Book book : books) {
@@ -92,7 +92,7 @@ public class DataStorageFactory {
 
     public static void addCopyBook(Book book) {
         @SuppressWarnings("unchecked")
-		List<Book> books = (List<Book>) read(BKS);
+        List<Book> books = (List<Book>) read(BKS);
         for (int i = 0; i < book.getNumberOfCopies(); i++) {
             Book bk = book;
             bk.setCopyNumber(UUID.randomUUID().toString());
@@ -110,32 +110,72 @@ public class DataStorageFactory {
 
 
     @SuppressWarnings("unchecked")
-	public static List<Author> getAuthors() {
+    public static List<Author> getAuthors() {
         return (List<Author>) read(AUTH);
 
     }
-    
+
     @SuppressWarnings("unchecked")
-	public static List<Employee> getEmployees() {
-    	return (List<Employee>)read(EMPL);
+    public static List<Employee> getEmployees() {
+        return (List<Employee>) read(EMPL);
     }
+
+
+    public static List<CheckoutEntry> getCheckoutEntryList(String txtFileName) {
+        try {
+            List<CheckoutEntry> objects = (List<CheckoutEntry>) read(CHK);
+            return objects;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public static CheckoutEntry getCheckoutEntryByIsbn(String isbn) {
+        try {
+            List<CheckoutEntry> entries = (List<CheckoutEntry>) read(CHK);
+            CheckoutEntry ret = null;
+            Integer count = 0;
+            for (CheckoutEntry entry : entries) {
+                if (entry.getIsbn().toLowerCase().equals(isbn.toLowerCase())) {
+                    ret = entry;
+                    count++;
+                }
+            }
+            return ret;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void addCheckoutEntry(CheckoutEntry entry) {
+        try {
+            List<CheckoutEntry> ces = (List<CheckoutEntry>) read(CHK);
+            ces.add(entry);
+            write(ces, CHK);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
     /**
      * Write the Initial Value here
      */
     public static void createInitialData() {
-    	
-    	// Create three different employees
-    	List<Employee> employees = new ArrayList<>();
-    	Employee e1 = new Employee("user1", "pass1", Role.LIBRARIAN);
-		Employee e2 = new Employee("user2", "pass2", Role.ADMIN);
-		Employee e3 = new Employee("user3", "pass3", Role.BOTH);
-		employees.add(e1);
-		employees.add(e2);
-		employees.add(e3);
-    	write(employees, EMPL);
-    	
-    	//For Library Members
+
+        // Create three different employees
+        List<Employee> employees = new ArrayList<>();
+        Employee e1 = new Employee("user1", "pass1", Role.LIBRARIAN);
+        Employee e2 = new Employee("user2", "pass2", Role.ADMIN);
+        Employee e3 = new Employee("user3", "pass3", Role.BOTH);
+        employees.add(e1);
+        employees.add(e2);
+        employees.add(e3);
+        write(employees, EMPL);
+
+        //For Library Members
         List<LibraryMember> members = new ArrayList<>();
         LibraryMember member = new LibraryMember();
         member.setMemberId(1L);

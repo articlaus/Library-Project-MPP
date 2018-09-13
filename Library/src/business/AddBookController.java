@@ -4,6 +4,7 @@ import dataaccess.Author;
 import dataaccess.Book;
 import dataaccess.DataStorageFactory;
 import dataaccess.Memory;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -47,7 +48,8 @@ public class AddBookController implements Initializable {
     public void addAuthor(ActionEvent event) throws IOException {
     	EventHandler.addAuthor(event, this);
     	authors = convertToAuthorList(Memory.getListFromMem());
-    	listAuthors.setText(getAuthorList());
+    	String list = getAuthorList();
+    	listAuthors.setText(list);
     }
     
     private String getAuthorList() {
@@ -61,15 +63,38 @@ public class AddBookController implements Initializable {
     @FXML
     public void addBook() {
     	Memory.clearMemory();					// clear memory 
-        
+    	int numCopies;
+    	// check format
+    	try {
+    		numCopies = Integer.valueOf(txtCopies.getText());
+    	} catch (NumberFormatException e) {
+        	EventHandler.displayErrorMessage("Error", "Number of copies should be a number");
+        	return;
+        }
+    	
     	List<Book> books = new ArrayList<>();
-        for (int i = 0; i < Integer.valueOf(txtCopies.getText()); i++) {
+        for (int i = 0; i < numCopies; i++) {
             Book book = new Book();
+            
+            // Create and add title
+            String title = txtTitle.getText();
+            if (title.isEmpty()) {
+            	EventHandler.displayErrorMessage("No Title", "Book should have a title");
+            	return;
+            }
+            book.setTitle(title);
+            
+            // Ensure maximum checkout date is in proper format
+            try {
+            	book.setCheckOutDay(Integer.valueOf(txtChkDays.getText()));
+            } catch (NumberFormatException e) {
+            	EventHandler.displayErrorMessage("Error", "Max Checkout Days should be a number");
+            	return;
+            }
+            
             book.setCopyNumber(UUID.randomUUID().toString());
             book.setIsbn(txtIsbn.getText());
-            book.setNumberOfCopies(Integer.valueOf(txtCopies.getText()));
-            book.setTitle(txtTitle.getText());
-            book.setCheckOutDay(Integer.valueOf(txtChkDays.getText()));
+            book.setNumberOfCopies(numCopies);
             book.setAuthors(authors);
             books.add(book);
             book.setAvailability(true);
