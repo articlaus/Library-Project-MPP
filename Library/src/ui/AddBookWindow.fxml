@@ -12,7 +12,6 @@
 
 <AnchorPane prefHeight="306.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.AddBookController">
     <children>
-      <TextField fx:id="listAuthors" alignment="TOP_LEFT" layoutX="143.0" layoutY="167.0" prefHeight="93.0" prefWidth="167.0" promptText="List of Authors" />
         <Label layoutX="135.0" layoutY="14.0" text="Add New Book">
          <font>
             <Font name="Verdana Bold" size="13.0" />
@@ -26,7 +25,8 @@
         <TextField fx:id="txtIsbn" layoutX="143.0" layoutY="77.0" promptText="Enter ISBN" />
         <TextField fx:id="txtChkDays" layoutX="143.0" layoutY="107.0" promptText="Enter Max Checkout Days" />
         <TextField fx:id="txtCopies" layoutX="143.0" layoutY="137.0" promptText="Number of Copies" />
-        <Button fx:id="btnPlus" layoutX="321.0" layoutY="165.0" mnemonicParsing="false" onAction="#addAuthor" prefHeight="27.0" prefWidth="35.0" text="+" />
+        <Button fx:id="btnPlus" layoutX="315.0" layoutY="170.0" mnemonicParsing="false" onAction="#addAuthor" prefHeight="27.0" prefWidth="10.0" text="+" />
         <Button fx:id="btnSave" layoutX="143.0" layoutY="267.0" mnemonicParsing="false" onAction="#addBook" text="Save" />
+      <Label fx:id="listAuthors" alignment="TOP_LEFT" layoutX="143.0" layoutY="170.0" prefHeight="86.0" prefWidth="167.0" style="-fx-background-color: #eeeeee;" />
     </children>
 </AnchorPane>
