@@ -3,7 +3,6 @@ package business;
 import dataaccess.Address;
 import dataaccess.DataStorageFactory;
 import dataaccess.LibraryMember;
-import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -47,7 +46,7 @@ public class MemberAddController {
         address.setStreet(txtStreet.getText());
         address.setZip(txtZip.getText());
         member.setAddress(address);
-        DataStorageFactory.saveMemebr(member);
+        DataStorageFactory.saveMember(member);
 
         ((Node) (e.getSource())).getScene().getWindow().hide();
     }

@@ -3,13 +3,15 @@ package business;
 import dataaccess.Author;
 import dataaccess.Book;
 import dataaccess.DataStorageFactory;
+import dataaccess.Memory;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,70 +21,73 @@ import java.util.UUID;
 public class AddBookController implements Initializable {
 
     @FXML
-    TextField txtTitle;
+    private TextField txtTitle;
 
     @FXML
-    TextField txtIsbn;
+    private TextField txtIsbn;
 
     @FXML
-    TextField txtChkDays;
+    private TextField txtChkDays;
+    
     @FXML
-    TextField txtCopies;
+    private TextField txtCopies;
+    
     @FXML
-    Label lblAuths;
+    private Label listAuthors;
+        
     @FXML
-    ComboBox cmbAuth;
+    private Button btnPlus;
+    
+    @FXML
+    private Button btnSave;
 
     List<Author> authors = new ArrayList<>();
 
     @FXML
-    public void addAuthor() {
-        if (cmbAuth.getValue() != null) {
-            if (authors.contains(cmbAuth.getValue())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Already Exist");
-                alert.setHeaderText("Selected Author exist");
-                alert.setContentText("The Author is already added, please select different one\n");
-                alert.showAndWait();
-            } else {
-                authors.add((Author) cmbAuth.getValue());
-                StringBuilder str = new StringBuilder();
-                for (Author author : authors) {
-                    str.append(author.toString()).append(", ");
-                }
-                lblAuths.setText(str.toString());
-            }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Non Selected");
-            alert.setHeaderText("Must Select an Author");
-            alert.setContentText("Please select an Author from the List\n");
-            alert.showAndWait();
-        }
+    public void addAuthor(ActionEvent event) throws IOException {
+    	EventHandler.addAuthor(event, this);
+    	authors = convertToAuthorList(Memory.getListFromMem());
+    	listAuthors.setText(getAuthorList());
+    }
+    
+    private String getAuthorList() {
+    	String formattedList = "";
+    	for(Author a : authors) {
+    		formattedList += a.getFirstName() + " " + a.getLastName() + "\n";
+    	}
+    	return formattedList;
     }
 
     @FXML
     public void addBook() {
-        List<Book> books = new ArrayList<>();
+    	Memory.clearMemory();					// clear memory 
+        
+    	List<Book> books = new ArrayList<>();
         for (int i = 0; i < Integer.valueOf(txtCopies.getText()); i++) {
             Book book = new Book();
             book.setCopyNumber(UUID.randomUUID().toString());
-            book.setAuthors(authors);
             book.setIsbn(txtIsbn.getText());
             book.setNumberOfCopies(Integer.valueOf(txtCopies.getText()));
             book.setTitle(txtTitle.getText());
             book.setCheckOutDay(Integer.valueOf(txtChkDays.getText()));
+            book.setAuthors(authors);
             books.add(book);
+            book.setAvailability(true);
         }
-
-//        book.setAvailability();
         DataStorageFactory.addNewBooks(books);
+    }
+    
+    // convert collection to list of authors
+    private List<Author> convertToAuthorList (List<Object> collection) {
+    	List<Author> list = new ArrayList<>();
+    	for(Object o : collection) {
+    		list.add((Author)o);
+    	}
+    	return list;
     }
 
     private void setData() {
-        List<Author> autnors = DataStorageFactory.getAuthors();
-        cmbAuth.getItems().clear();
-        cmbAuth.getItems().addAll(autnors);
+        
     }
 
     @Override
