@@ -1,5 +1,6 @@
-package application;
+package business;
 
+import dataaccess.CheckoutEntry;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

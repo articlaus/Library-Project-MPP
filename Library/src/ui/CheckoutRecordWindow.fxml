@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="458.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="business.CheckoutRecordWindowController">
+    <children>
+        <Label layoutX="170.0" layoutY="65.0" text="Checkout Record">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <TableView fx:id="tblCheckoutRecord" layoutX="39.0" layoutY="122.0" prefHeight="296.0" prefWidth="415.0">
+            <columns>
+                <TableColumn fx:id="copyNumberCol" minWidth="0.0" prefWidth="100.0" text="Copy Number"/>
+                <TableColumn fx:id="checkoutDateCol" minWidth="0.0" prefWidth="100.0" text="Checkout Date"/>
+                <TableColumn fx:id="dueDateCol" minWidth="0.0" prefWidth="100.0" text="Due Date"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
