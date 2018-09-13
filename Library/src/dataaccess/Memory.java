@@ -4,26 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Memory {
-	private static List<Book> tempBookCollection = new ArrayList<>();
-    private static List<Author> tempAuthorCollection = new ArrayList<>();
-    
+	
     private static List<Object> tempCollection = new ArrayList<>();
-    
-    public static List<Book> getBooksFromMemory() {
-    	return tempBookCollection;
-    }
-    
-    public static void addBookToMemory(Book book) {
-    	tempBookCollection.add(book);
-    }
-    
-    public static void addAuthorToMemory(Author a) {
-    	tempAuthorCollection.add(a);
-    }
-    
-    public static List<Author> getAuthoursFromMemory() {
-    	return tempAuthorCollection;
-    }
+    private static Role currentRole;
     
     public static void addObjectToMem(Object o) {
     	tempCollection.add(o);
@@ -37,5 +20,13 @@ public class Memory {
     	//tempBookCollection = new ArrayList<>();
     	//tempAuthorCollection = new ArrayList<>();
     	tempCollection = new ArrayList<>();
+    }
+    
+    public static void setRole(Role r) {
+    	currentRole = r;
+    }
+    
+    public static Role getRole() {
+    	return currentRole;
     }
 }

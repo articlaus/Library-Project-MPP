@@ -1,8 +1,13 @@
 package business;
 
+import java.io.IOException;
+
 import dataaccess.Author;
 import dataaccess.Book;
 import dataaccess.DataStorageFactory;
+import dataaccess.Memory;
+import dataaccess.Role;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -78,6 +83,21 @@ public class AddCopyController {
             }
         }
 
+    }
+    
+    @FXML
+    public void back(ActionEvent event) throws IOException {
+    	switch(Memory.getRole()) {
+    	case BOTH:
+    		EventHandler.login(event, this, Role.BOTH);
+    		break;
+    	case ADMIN:
+    		EventHandler.login(event, this, Role.ADMIN);
+    		break;
+    	case LIBRARIAN:
+    		// should be unreachable
+    		break;
+    	}
     }
 
 

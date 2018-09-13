@@ -10,9 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.IOException;
 
 public class SearchBookWindowController {
 
@@ -67,4 +65,10 @@ public class SearchBookWindowController {
 
         tbBook.setItems(FXCollections.observableArrayList(ce));
     }
+    
+    @FXML
+    public void back(ActionEvent event) throws IOException {
+    	EventHandler.checkoutBook(event, this);
+    }
+
 }

@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="295.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.AddCopyController">
+<AnchorPane prefHeight="295.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.AddCopyController">
     <children>
-        <Label layoutX="145.0" layoutY="14.0" text="Add New Book Copy"/>
-        <Label layoutX="70.0" layoutY="59.0" text="ISBN Number :"/>
-        <TextField fx:id="txtISBN" layoutX="173.0" layoutY="55.0" promptText="ISBN Number to Search"/>
-        <Label layoutX="70.0" layoutY="105.0" text="Title :"/>
-        <Label layoutX="70.0" layoutY="139.0" text="Authors :"/>
-        <Label layoutX="70.0" layoutY="170.0" text="# Copies :"/>
-        <Label layoutX="69.0" layoutY="200.0" text="Copies to Add :"/>
-        <TextField fx:id="txtCopies" layoutX="173.0" layoutY="196.0" promptText="Number of Copies"/>
-        <Label fx:id="lblTitle" layoutX="173.0" layoutY="105.0" text="N/A"/>
-        <Label fx:id="lblAuthors" layoutX="173.0" layoutY="139.0" text="N/A"/>
-        <Label fx:id="lblAvailable" layoutX="173.0" layoutY="170.0" text="N/A"/>
-        <Button fx:id="btnSearch" layoutX="334.0" layoutY="55.0" mnemonicParsing="false" onAction="#searchBook"
-                text="+"/>
-        <Button fx:id="btnAdd" onAction="#addCopies" layoutX="169.0" layoutY="240.0" mnemonicParsing="false"
-                text="Add Copies"/>
+        <Label layoutX="145.0" layoutY="14.0" text="Add Book Copy" />
+        <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="55.0" prefHeight="27.0" prefWidth="100.0" text="ISBN Number :" />
+        <TextField fx:id="txtISBN" layoutX="142.0" layoutY="55.0" promptText="ISBN Number to Search" />
+        <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="105.0" prefHeight="27.0" prefWidth="100.0" text="Title :" />
+        <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="134.0" prefHeight="27.0" prefWidth="100.0" text="Authors :" />
+        <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="165.0" prefHeight="27.0" prefWidth="100.0" text="# Copies :" />
+        <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="200.0" prefHeight="27.0" prefWidth="100.0" text="Copies to Add :" />
+        <TextField fx:id="txtCopies" layoutX="142.0" layoutY="200.0" promptText="Number of Copies" />
+        <Label fx:id="lblTitle" layoutX="142.0" layoutY="110.0" text="N/A" />
+        <Label fx:id="lblAuthors" layoutX="142.0" layoutY="140.0" text="N/A" />
+        <Label fx:id="lblAvailable" layoutX="142.0" layoutY="170.0" text="N/A" />
+        <Button fx:id="btnSearch" layoutX="318.0" layoutY="55.0" mnemonicParsing="false" onAction="#searchBook" text="Search" />
+        <Button fx:id="btnAdd" layoutX="142.0" layoutY="240.0" mnemonicParsing="false" onAction="#addCopies" text="Add Copies" />
+      <Button layoutX="318.0" layoutY="240.0" mnemonicParsing="false" onAction="#back" text="Back" />
     </children>
 </AnchorPane>

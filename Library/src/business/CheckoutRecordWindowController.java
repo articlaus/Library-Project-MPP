@@ -4,13 +4,17 @@ import dataaccess.Address;
 import dataaccess.Author;
 import dataaccess.Book;
 import dataaccess.CheckoutEntry;
+import dataaccess.Memory;
+import dataaccess.Role;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +61,11 @@ public class CheckoutRecordWindowController implements Initializable{
 			tblCheckoutRecord.setItems(FXCollections.observableArrayList(entries));
 			
 		}
+		
+		@FXML
+	    public void back(ActionEvent event) throws IOException {
+	    	EventHandler.checkoutBook(event, this);
+	    }
 
 
 		

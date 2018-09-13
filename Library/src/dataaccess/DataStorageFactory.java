@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class DataStorageFactory {
 
-    private static String OUTPUT_DIR = System.getProperty("user.dir") + "/Library/src/dataaccess/storage/";
+    private static String OUTPUT_DIR = System.getProperty("user.dir") + "/src/dataaccess/storage/";
     private static String LIB_MEM = "LibraryMember.txt";
     private static String BKS = "Book.txt";
     private static String AUTH = "Author.txt";
@@ -207,19 +207,9 @@ public class DataStorageFactory {
         books.add(new Book(UUID.randomUUID().toString(), "978-3-598-21500-1", authors, "How to Live", true));
         books.add(new Book(UUID.randomUUID().toString(), "978-3-598-21500-2", authors, "How to Live 2", true));
         write(books, BKS);
+
         //write Authors
         write(authors, AUTH);
-    }
 
-    public static void updateAvailabilityOfBook(String isbn, boolean availability) {
-        try {
-            List<Book> books = (List<Book>) read(BKS);
-            for (Book b : books)
-                if (b.getIsbn().equals(isbn))
-                    b.setAvailability(availability);
-            write(books, BKS);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 }

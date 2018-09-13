@@ -4,22 +4,19 @@ import dataaccess.Author;
 import dataaccess.Book;
 import dataaccess.DataStorageFactory;
 import dataaccess.Memory;
-
+import dataaccess.Role;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.UUID;
 
-public class AddBookController implements Initializable {
+public class AddBookController {
 
     @FXML
     private TextField txtTitle;
@@ -41,6 +38,7 @@ public class AddBookController implements Initializable {
     
     @FXML
     private Button btnSave;
+    
 
     List<Author> authors = new ArrayList<>();
 
@@ -111,12 +109,18 @@ public class AddBookController implements Initializable {
     	return list;
     }
 
-    private void setData() {
-        
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setData();
+    @FXML
+    public void back(ActionEvent event) throws IOException {
+    	switch(Memory.getRole()) {
+    	case BOTH:
+    		EventHandler.login(event, this, Role.BOTH);
+    		break;
+    	case ADMIN:
+    		EventHandler.login(event, this, Role.ADMIN);
+    		break;
+    	case LIBRARIAN:
+    		// should be unreachable
+    		break;
+    	}
     }
 }

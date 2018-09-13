@@ -67,3 +67,4 @@ bin/business/AddCopyController.class
 bin/ui/AddCopyWindow.fxml
 bin/ui/CheckoutForm.fxml
 bin/ui/MemberAddWindow.fxml
+Library/src/ui/.DS_Store

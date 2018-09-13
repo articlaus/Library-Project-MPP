@@ -1,9 +1,13 @@
 package business;
 
+import java.io.IOException;
+
 import dataaccess.Address;
 import dataaccess.DataStorageFactory;
 import dataaccess.LibraryMember;
-import javafx.event.Event;
+import dataaccess.Memory;
+import dataaccess.Role;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -12,7 +16,7 @@ import javafx.scene.control.TextField;
 public class MemberAddController {
 
     @FXML
-    private TextField txtId;
+    private TextField txtID;
     @FXML
     private TextField txtFirstName;
     @FXML
@@ -33,9 +37,9 @@ public class MemberAddController {
     private Button btnClear;
 
     @FXML
-    public void createMember(Event e) {
+    public void createMember(ActionEvent event) {
         LibraryMember member = new LibraryMember();
-        member.setMemberId(Long.valueOf(txtId.getText()));
+        member.setMemberId(Long.valueOf(txtID.getText()));
         member.setFirstName(txtFirstName.getText());
         member.setLastName(txtLastName.getText());
         member.setPhoneNumber(txtTelephone.getText());
@@ -48,7 +52,33 @@ public class MemberAddController {
         member.setAddress(address);
         DataStorageFactory.saveMember(member);
 
-        ((Node) (e.getSource())).getScene().getWindow().hide();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+    
+    @FXML
+    public void clear(ActionEvent event) {
+    	txtID.setText("");
+    	txtFirstName.setText("");
+    	txtLastName.setText("");
+    	txtStreet.setText("");
+    	txtCity.setText("");
+    	txtState.setText("");
+    	txtZip.setText("");
+    }
+    
+    @FXML
+    public void back(ActionEvent event) throws IOException {
+    	switch(Memory.getRole()) {
+    	case LIBRARIAN:
+    		// this should be unreachable
+    		break;
+    	case BOTH:
+    		EventHandler.login(event, this, Role.BOTH);
+    		break;
+    	case ADMIN:
+    		EventHandler.login(event, this, Role.ADMIN);
+    		break;	
+    	}
     }
 
 
