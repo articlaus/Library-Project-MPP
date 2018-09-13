@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="406.0" fitWidth="452.0" layoutY="-5.0">
          <image>
-            <Image url="@../../../../../Downloads/Books.jpg" />
+            <Image url="@../../bin/ui/Books.jpg" />
          </image>
       </ImageView>
       <Label alignment="CENTER_RIGHT" layoutX="22.0" layoutY="172.0" prefHeight="17.0" prefWidth="51.0" text="User ID">
