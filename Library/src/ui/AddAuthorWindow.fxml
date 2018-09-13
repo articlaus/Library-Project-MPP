@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="385.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.AddAuthorController">
+    <children>
+        <Label layoutX="106.0" layoutY="18.0" text="Author Information">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font></Label>
+        <Label layoutX="20.0" layoutY="262.0" text="Credentials:" />
+        <TextField fx:id="txtCredentials" layoutX="104.0" layoutY="257.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter Credentials" />
+        <Label layoutX="25.0" layoutY="52.0" text="First Name:" />
+        <TextField fx:id="txtFirstName" layoutX="104.0" layoutY="47.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter First Name" />
+        <Label layoutX="26.0" layoutY="82.0" text="Last Name:" />
+        <Label layoutX="54.0" layoutY="112.0" text="Street:" />
+        <Label layoutX="67.0" layoutY="142.0" text="City:" />
+        <Label layoutX="57.0" layoutY="172.0" text="State:" />
+        <Label layoutX="26.0" layoutY="202.0" text="Telephone:" />
+        <TextField fx:id="txtLastName" layoutX="104.0" layoutY="77.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter Last name" />
+        <TextField fx:id="txtStreet" layoutX="104.0" layoutY="107.0" prefHeight="25.0" prefWidth="187.0" promptText="Street Address" />
+        <TextField fx:id="txtCity" layoutX="104.0" layoutY="137.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter City" />
+        <TextField fx:id="txtState" layoutX="104.0" layoutY="167.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter State" />
+        <TextField fx:id="txtTelephone" layoutX="104.0" layoutY="197.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter Telephone Number" />
+        <Button fx:id="buttonAdd" layoutX="104.0" layoutY="344.0" mnemonicParsing="false" onAction="#addAuthor" prefHeight="27.0" prefWidth="55.0" text="Add" />
+        <Button fx:id="buttonClear" layoutX="165.0" layoutY="344.0" mnemonicParsing="false" onAction="#clear" prefWidth="55.0" text="Clear" />
+      	<Label layoutX="68.0" layoutY="232.0" text="Zip :" />
+      	<TextField fx:id="txtZip" layoutX="104.0" layoutY="227.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter Zip" />
+      <Label layoutX="31.0" layoutY="292.0" text="Short Bio:" />
+      <TextField fx:id="txtBio" alignment="TOP_LEFT" layoutX="104.0" layoutY="287.0" prefHeight="50.0" prefWidth="187.0" promptText="Enter Short Biography" />
+    </children>
+</AnchorPane>

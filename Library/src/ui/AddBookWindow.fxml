@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="306.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.AddBookController">
+<AnchorPane prefHeight="306.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.AddBookController">
     <children>
-        <Label layoutX="135.0" layoutY="14.0" text="Add New Book"/>
-        <Label layoutX="23.0" layoutY="47.0" text="Title :"/>
-        <Label layoutX="23.0" layoutY="76.0" text="ISBN Number :"/>
-        <Label layoutX="22.0" layoutY="103.0" text="Max Checkout Days :"/>
-        <Label layoutX="24.0" layoutY="130.0" text="# Copies :"/>
-        <Label layoutX="24.0" layoutY="159.0" text="Add Author :"/>
-        <Label layoutX="24.0" layoutY="186.0" text="Authors :"/>
-        <TextField fx:id="txtTitle" layoutX="153.0" layoutY="44.0" promptText="Enter Title"/>
-        <TextField fx:id="txtIsbn" layoutX="153.0" layoutY="72.0" promptText="Enter ISBN"/>
-        <TextField fx:id="txtChkDays" layoutX="153.0" layoutY="100.0" promptText="Enter Max Checkout Days"/>
-        <TextField fx:id="txtCopies" layoutX="153.0" layoutY="126.0" promptText="Number of Copies"/>
-        <ComboBox fx:id="cmbAuth" layoutX="153.0" layoutY="155.0" prefHeight="25.0" prefWidth="168.0"
-                  promptText="Select Author To Add"/>
-        <Label fx:id="lblAuths" layoutX="153.0" layoutY="186.0" text="No Author"/>
-        <Button fx:id="btnPlus" layoutX="331.0" layoutY="155.0" mnemonicParsing="false" onAction="#addAuthor" text="+"/>
-        <Button fx:id="btnSave" onAction="#addBook" layoutX="127.0" layoutY="227.0" mnemonicParsing="false"
-                text="Save"/>
+      <TextField fx:id="listAuthors" alignment="TOP_LEFT" layoutX="143.0" layoutY="167.0" prefHeight="93.0" prefWidth="167.0" promptText="List of Authors" />
+        <Label layoutX="135.0" layoutY="14.0" text="Add New Book">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font></Label>
+        <Label layoutX="101.0" layoutY="52.0" text="Title :  " />
+        <Label layoutX="98.0" layoutY="82.0" text="ISBN :  " />
+        <Label layoutX="6.0" layoutY="110.0" text="Max Checkout Days :  " />
+        <Label layoutX="73.0" layoutY="142.0" text="# Copies :  " />
+        <Label layoutX="79.0" layoutY="170.0" text="Authors :  " />
+        <TextField fx:id="txtTitle" layoutX="143.0" layoutY="47.0" promptText="Enter Title" />
+        <TextField fx:id="txtIsbn" layoutX="143.0" layoutY="77.0" promptText="Enter ISBN" />
+        <TextField fx:id="txtChkDays" layoutX="143.0" layoutY="107.0" promptText="Enter Max Checkout Days" />
+        <TextField fx:id="txtCopies" layoutX="143.0" layoutY="137.0" promptText="Number of Copies" />
+        <Button fx:id="btnPlus" layoutX="321.0" layoutY="165.0" mnemonicParsing="false" onAction="#addAuthor" prefHeight="27.0" prefWidth="35.0" text="+" />
+        <Button fx:id="btnSave" layoutX="143.0" layoutY="267.0" mnemonicParsing="false" onAction="#addBook" text="Save" />
     </children>
 </AnchorPane>

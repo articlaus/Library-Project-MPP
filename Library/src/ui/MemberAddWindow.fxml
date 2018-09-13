@@ -24,7 +24,7 @@
         <TextField fx:id="txtTelephone" layoutX="189.0" layoutY="285.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter Telephone Number" />
         <Button fx:id="btnSave" layoutX="189.0" layoutY="348.0" mnemonicParsing="false" onAction="#createMember" text="Save" />
         <Button fx:id="btnClear" layoutX="239.0" layoutY="349.0" mnemonicParsing="false" text="Clearn" />
-      <Label layoutX="82.0" layoutY="314.0" text="Zip :" />
-      <TextField fx:id="txtZip" layoutX="190.0" layoutY="315.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter Zip" />
+      	<Label layoutX="82.0" layoutY="314.0" text="Zip :" />
+      	<TextField fx:id="txtZip" layoutX="190.0" layoutY="315.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter Zip" />
     </children>
 </AnchorPane>
