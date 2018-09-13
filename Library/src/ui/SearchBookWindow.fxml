@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="514.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="business.SearchBookWindowController">
+    <children>
+        <Label layoutX="174.0" layoutY="54.0" text="Search Book">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <Label layoutX="42.0" layoutY="118.0" text="ISBN:"/>
+        <TextField fx:id="txtIsbn" layoutX="101.0" layoutY="113.0"/>
+        <Button fx:id="btnSearch" layoutX="309.0" layoutY="113.0" mnemonicParsing="false" onAction="#onActionHandle"
+                text="Search"/>
+        <TableView fx:id="tbBook" layoutX="42.0" layoutY="165.0" prefHeight="256.0" prefWidth="571.0">
+            <columns>
+                <TableColumn fx:id="IsbnCol" prefWidth="75.0" text="ISBN"/>
+                <TableColumn fx:id="bookTitleCol" prefWidth="100.0" text="Book Title"/>
+                <TableColumn fx:id="copyNumberCol" prefWidth="100.0" text="Copy Number"/>
+                <TableColumn fx:id="memberIdCol" prefWidth="100.0" text="MemberID"/>
+                <TableColumn fx:id="dueDateCol" prefWidth="100.0" text="Due Date"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

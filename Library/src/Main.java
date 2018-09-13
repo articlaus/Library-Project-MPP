@@ -2,6 +2,7 @@ import dataaccess.DataStorageFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 
@@ -12,8 +13,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         DataStorageFactory.createInitialData();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("ui/AddBookWindow.fxml"));
-        primaryStage.setTitle("Testing");
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("ui/Login.fxml"));
+        primaryStage.setTitle("Library Application");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
