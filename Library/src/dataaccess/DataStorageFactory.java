@@ -9,10 +9,11 @@ import java.util.UUID;
 
 public class DataStorageFactory {
 
-    public static String OUTPUT_DIR = System.getProperty("user.dir") + "\\Library\\src\\dataaccess\\storage\\";
-    static String LIB_MEM = "LibraryMember.txt";
-    static String BKS = "Book.txt";
-    static String AUTH = "Author.txt";
+    private static String OUTPUT_DIR = System.getProperty("user.dir") + "/src/dataaccess/storage/";
+    private static String LIB_MEM = "LibraryMember.txt";
+    private static String BKS = "Book.txt";
+    private static String AUTH = "Author.txt";
+    private static String EMPL = "Employees.txt";
 
     /**
      * Method that handles every read Operation
@@ -24,7 +25,9 @@ public class DataStorageFactory {
         try {
             FileInputStream fix = new FileInputStream(new File(OUTPUT_DIR + fileName));
             ObjectInputStream ois = new ObjectInputStream(fix);
-            return ois.readObject();
+            Object ob = ois.readObject();
+            ois.close();
+            return ob;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -37,9 +40,10 @@ public class DataStorageFactory {
      * @param datas    data to be written
      * @param fileName file to be written to
      */
-    public static void write(List datas, String fileName) {
+    public static void write(List<?> datas, String fileName) {
         try {
             FileOutputStream fos = new FileOutputStream(OUTPUT_DIR + fileName);
+            System.out.println("Writing to " + OUTPUT_DIR + fileName);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(datas);
             oos.close();
@@ -49,14 +53,16 @@ public class DataStorageFactory {
     }
 
     public static void saveMemebr(LibraryMember libraryMember) {
-        List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
+        @SuppressWarnings("unchecked")
+		List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
         members.add(libraryMember);
         write(members, LIB_MEM);
         readMember();
     }
 
     public static void readMember() {
-        List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
+        @SuppressWarnings("unchecked")
+		List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         String txt = "Current Members Are: \n";
         for (LibraryMember member : members) {
@@ -69,7 +75,8 @@ public class DataStorageFactory {
     }
 
     public static Book getBookByIsnb(String isbn) {
-        List<Book> books = (List<Book>) read(BKS);
+        @SuppressWarnings("unchecked")
+		List<Book> books = (List<Book>) read(BKS);
         Book ret = null;
         Integer count = 0;
         for (Book book : books) {
@@ -84,7 +91,8 @@ public class DataStorageFactory {
     }
 
     public static void addCopyBook(Book book) {
-        List<Book> books = (List<Book>) read(BKS);
+        @SuppressWarnings("unchecked")
+		List<Book> books = (List<Book>) read(BKS);
         for (int i = 0; i < book.getNumberOfCopies(); i++) {
             Book bk = book;
             bk.setCopyNumber(UUID.randomUUID().toString());
@@ -101,16 +109,33 @@ public class DataStorageFactory {
     }
 
 
-    public static List<Author> getAuthors() {
+    @SuppressWarnings("unchecked")
+	public static List<Author> getAuthors() {
         return (List<Author>) read(AUTH);
 
+    }
+    
+    @SuppressWarnings("unchecked")
+	public static List<Employee> getEmployees() {
+    	return (List<Employee>)read(EMPL);
     }
 
     /**
      * Write the Initial Value here
      */
     public static void createInitialData() {
-        //For Library Members
+    	
+    	// Create three different employees
+    	List<Employee> employees = new ArrayList<>();
+    	Employee e1 = new Employee("user1", "pass1", Role.LIBRARIAN);
+		Employee e2 = new Employee("user2", "pass2", Role.ADMIN);
+		Employee e3 = new Employee("user3", "pass3", Role.BOTH);
+		employees.add(e1);
+		employees.add(e2);
+		employees.add(e3);
+    	write(employees, EMPL);
+    	
+    	//For Library Members
         List<LibraryMember> members = new ArrayList<>();
         LibraryMember member = new LibraryMember();
         member.setMemberId(1L);
