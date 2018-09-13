@@ -9,6 +9,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import dataaccess.DataStorageFactory;
+import dataaccess.LibraryMember;
+import dataaccess.Memory;
 import dataaccess.Role;
 
 public class EventHandler {
@@ -93,7 +96,12 @@ public class EventHandler {
 	}
 	
 	public static void searchMember(ActionEvent event, Object caller) throws IOException{
-		
+		Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	AnchorPane root = FXMLLoader.load(caller.getClass().getResource("../ui/SearchMemberWindow.fxml"));
+		Scene scene = new Scene(root,400,400);
+		primaryStage.setResizable(false);
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 	
 	public static void displayErrorMessage(String title, String message) {

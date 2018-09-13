@@ -101,7 +101,7 @@ public class CheckoutWindowController implements Initializable {
         // Create list of member
         members = new ArrayList<>();
         LibraryMember member = new LibraryMember();
-        member.setMemberId(2L);
+        member.setMemberId("2");
         member.setFirstName("Ganbat");
         member.setLastName("Bayar");
         member.setPhoneNumber("123");

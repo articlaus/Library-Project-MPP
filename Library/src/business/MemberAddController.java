@@ -39,24 +39,34 @@ public class MemberAddController {
     @FXML
     public void createMember(ActionEvent event) {
         LibraryMember member = new LibraryMember();
-        member.setMemberId(Long.valueOf(txtID.getText()));
+        
+        String id = txtID.getText();
+        LibraryMember duplicate = DataStorageFactory.readMember(id);
+        if (duplicate != null) {
+        	EventHandler.displayErrorMessage("Duplicate ID", "The member ID is already being used. Please specify a different ID");
+        	return;
+        }
+        // set member info
+        member.setMemberId(txtID.getText());
         member.setFirstName(txtFirstName.getText());
         member.setLastName(txtLastName.getText());
         member.setPhoneNumber(txtTelephone.getText());
 
+        // create address and add to member info
         Address address = new Address();
         address.setCity(txtCity.getText());
         address.setState(txtState.getText());
         address.setStreet(txtStreet.getText());
         address.setZip(txtZip.getText());
         member.setAddress(address);
+        
+        // write member to file
         DataStorageFactory.saveMember(member);
-
-        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
     
     @FXML
     public void clear(ActionEvent event) {
+    	System.out.println("Clearing fields");
     	txtID.setText("");
     	txtFirstName.setText("");
     	txtLastName.setText("");
