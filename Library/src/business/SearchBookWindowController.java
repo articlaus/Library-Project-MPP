@@ -24,20 +24,27 @@ public class SearchBookWindowController {
     @FXML
     private TableView tbBook;
 
-    @FXML private TableColumn<CheckoutEntry, String> IsbnCol;
-    @FXML private TableColumn<CheckoutEntry, String> bookTitleCol;
-    @FXML private TableColumn<CheckoutEntry, String> copyNumberCol;
-    @FXML private TableColumn<CheckoutEntry, String> memberIdCol;
-    @FXML private TableColumn<CheckoutEntry, String> dueDateCol;
-    @FXML private TableColumn<CheckoutEntry, String> isDueCol;
+    @FXML
+    private TableColumn<CheckoutEntry, String> IsbnCol;
+    @FXML
+    private TableColumn<CheckoutEntry, String> bookTitleCol;
+    @FXML
+    private TableColumn<CheckoutEntry, String> copyNumberCol;
+    @FXML
+    private TableColumn<CheckoutEntry, String> memberIdCol;
+    @FXML
+    private TableColumn<CheckoutEntry, String> dueDateCol;
+    @FXML
+    private TableColumn<CheckoutEntry, String> isDueCol;
 
     @FXML
     public void onActionHandle(ActionEvent event) {
         String isbn = txtIsbn.getText();
 
-        //CheckoutEntry ce = DataStorageFactory.getCheckoutEntryByIsbn(isbn);
+        System.out.println(isbn);
+        CheckoutEntry ce = DataStorageFactory.getCheckoutEntryByIsbn(isbn);
 
-        CheckoutEntry ce = new CheckoutEntry("M001", "11111", "MPP", "C001", "08/15/2018", "08/20/2018");
+//        CheckoutEntry ce = new CheckoutEntry("M001", "11111", "MPP", "C001", "08/15/2018", "08/20/2018");
 
         IsbnCol.setMinWidth(80);
         IsbnCol.setEditable(false);
@@ -66,10 +73,10 @@ public class SearchBookWindowController {
 
         tbBook.setItems(FXCollections.observableArrayList(ce));
     }
-    
+
     @FXML
     public void back(ActionEvent event) throws IOException {
-    	EventHandler.checkoutBook(event, this);
+        EventHandler.checkoutBook(event, this);
     }
 
 }

@@ -9,12 +9,13 @@ import java.util.UUID;
 
 public class DataStorageFactory {
 
-    private static String OUTPUT_DIR = System.getProperty("user.dir") + "/src/dataaccess/storage/";
+    private static String OUTPUT_DIR = System.getProperty("user.dir") + "/Library/src/dataaccess/storage/";
     private static String LIB_MEM = "LibraryMember.txt";
     private static String BKS = "Book.txt";
     private static String AUTH = "Author.txt";
     private static String EMPL = "Employees.txt";
     private static String CHK = "CheckoutEntry.txt";
+    private static String CKR = "CheckoutRecord.txt";
 
     /**
      * Method that handles every read Operation
@@ -73,14 +74,19 @@ public class DataStorageFactory {
         alert.setContentText("Successfully created a Library Member\n" + txt);
         alert.showAndWait();
     }
-    
-    public static LibraryMember readMember (String memberID) {
-    	List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
-    	for(LibraryMember m : members) {
-    		if(m.getMemberId().equals(memberID))
-    			return m;
-    	}
-    	return null;
+
+    public static LibraryMember readMember(String memberID) {
+        List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
+        for (LibraryMember m : members) {
+            if (m.getMemberId().equals(memberID))
+                return m;
+        }
+        return null;
+    }
+
+    public static List<LibraryMember> getMembers() {
+        List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
+        return members;
     }
 
     public static Book getBookByIsnb(String isbn) {
@@ -96,6 +102,17 @@ public class DataStorageFactory {
         }
         if (ret != null)
             ret.setNumberOfCopies(count);
+        return ret;
+    }
+
+    public static List<Book> getBooksByIsnb(String isn) {
+        List<Book> books = (List<Book>) read(BKS);
+        List<Book> ret = new ArrayList<>();
+        for (Book book : books) {
+            if (book.getIsbn().toLowerCase().equals(isn.toLowerCase())) {
+                ret.add(book);
+            }
+        }
         return ret;
     }
 
@@ -168,9 +185,30 @@ public class DataStorageFactory {
         }
     }
 
+    public static CheckoutRecord checkoutRecords(Long id) {
+        List<CheckoutRecord> records = (List<CheckoutRecord>) read(CKR);
+        for (CheckoutRecord record : records) {
+            if (record.getMemberId().equals(id))
+                return record;
+        }
+        return null;
+    }
+
+    public static void addRecord(CheckoutRecord record) {
+        List<CheckoutRecord> records = (List<CheckoutRecord>) read(CKR);
+        for (CheckoutRecord checkoutRecord : records) {
+            if (checkoutRecord.memberId.equals(record.memberId)) {
+                checkoutRecord = record;
+                records.remove(checkoutRecord);
+                records.add(checkoutRecord);
+            }
+        }
+        write(records, CKR);
+    }
+
 
     /**
-     * Write the Initial Value here
+     * Write the Initial Value file
      */
     public static void createInitialData() {
 
@@ -187,7 +225,7 @@ public class DataStorageFactory {
         //For Library Members
         List<LibraryMember> members = new ArrayList<>();
         LibraryMember member = new LibraryMember();
-        member.setMemberId("1");
+        member.setMemberId(1L);
         member.setFirstName("Ganbat");
         member.setLastName("Bayar");
         member.setPhoneNumber("123");
@@ -213,12 +251,58 @@ public class DataStorageFactory {
         auth.setShortBio("An Author");
         auth.setCredentials("Creds");
         authors.add(auth);
-        books.add(new Book(UUID.randomUUID().toString(), "978-3-598-21500-1", authors, "How to Live", true));
-        books.add(new Book(UUID.randomUUID().toString(), "978-3-598-21500-2", authors, "How to Live 2", true));
+        books.add(new Book(UUID.randomUUID().toString(), "978-3-598-21500-1", authors, "How to Live", true, 21));
+        books.add(new Book(UUID.randomUUID().toString(), "978-3-598-21500-2", authors, "How to Live 2", true, 7));
         write(books, BKS);
-
-        //write Authors
         write(authors, AUTH);
+//        readCk();
+    }
 
+
+    private static void readCk() {
+        try {
+            Address add = new Address("1000N 4th Street", "Fairfield", "IA", "52557");
+            List<Author> authors = new ArrayList<>();
+            Author auth = new Author();
+            auth.setFirstName("Ganbat");
+            auth.setLastName("Bayar");
+            auth.setAddress(add);
+            auth.setShortBio("Decent Author");
+            auth.setCredentials("Creds");
+            authors.add(auth);
+            List<CheckoutEntry> entries = new ArrayList<>();
+            Book b1 = new Book(UUID.randomUUID().toString(), "978-3-598-21500-1", authors, "How to Live", true, 21);
+            Book b2 = new Book(UUID.randomUUID().toString(), "978-3-598-21500-2", authors, "How to Live 2", true, 7);
+            entries.add(new CheckoutEntry("1", "978-3-598-21500-2", "Book", b1.getCopyNumber(), "08/15/2018", "08/22/2018"));
+            entries.add(new CheckoutEntry("1", "978-3-598-21500-2", "Book", b1.getCopyNumber(), "08/15/2018", "08/22/2018"));
+            CheckoutRecord checkoutRecord = new CheckoutRecord(1L, entries);
+            List<CheckoutRecord> checkoutRecords = new ArrayList<>();
+            checkoutRecords.add(checkoutRecord);
+            write(entries, CHK);
+            write(checkoutRecords, CKR);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void updateAvailabilityOfBook(String isbn, boolean availability) {
+        try {
+            List<Book> books = (List<Book>) read(BKS);
+            for (Book b : books)
+                if (b.getIsbn().equals(isbn))
+                    b.setAvailability(availability);
+            write(books, BKS);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static List<CheckoutEntry> addInitialCheckOuts() {
+        try {
+            return (List<CheckoutEntry>) read(CHK);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }

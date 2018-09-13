@@ -32,7 +32,7 @@ public class CheckoutWindowController implements Initializable {
     private Label lblMessage;
 
     @FXML
-    void btnCheckoutHandle(ActionEvent event) {
+    void btnCheckoutHandle(ActionEvent event) throws IOException {
         String memID = txtMemberID.getText();
         String isbn = txtIsbn.getText();
         if (!checkMemberIdExist(memID)) {
@@ -42,71 +42,54 @@ public class CheckoutWindowController implements Initializable {
                 lblMessage.setText("The book is not available");
             } else {
                 Book b = DataStorageFactory.getBookByIsnb(isbn);
+                //----------
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                 Date date = new Date();
                 Calendar c = Calendar.getInstance();
                 c.setTime(date);
                 c.add(Calendar.DATE, b.getCheckOutDay());
                 CheckoutEntry ce = new CheckoutEntry(memID, isbn, b.getTitle(), b.getCopyNumber(), formatter.format(date), formatter.format(c.getTime()));
+                CheckoutRecord checkoutRecord = DataStorageFactory.checkoutRecords(Long.valueOf(memID));
+                checkoutRecord.getEntryList().add(ce);
+                DataStorageFactory.updateAvailabilityOfBook(isbn, false);
+                DataStorageFactory.addRecord(checkoutRecord);
                 DataStorageFactory.addCheckoutEntry(ce);
-                System.out.println("A new entry is added");
-                //*****	  popup the CheckoutRecord window
+                EventHandler.addCheckoutEntry(event, this);
             }
         }
-
-
     }
-
 
     boolean checkMemberIdExist(String memberID) {
         for (LibraryMember m : members) {
-            if (m.getMemberId().equals(memberID))
+            if (m.getMemberId().equals(Long.valueOf(memberID)))
                 return true;
         }
         return false;
     }
 
     boolean checkBookExist(String isbn) {
-        //Book b = DataStorageFactory.getBookByIsnb(isbn);
-        Address add = new Address("1000N 4th Street", "Fairfield", "IA", "52557");
-        List<Author> authors = new ArrayList<>();
-        Author auth = new Author();
-        auth.setFirstName("Ganbat");
-        auth.setLastName("Bayar");
-        auth.setAddress(add);
-        auth.setShortBio("Decent Author");
-        auth.setCredentials("Creds");
-        authors.add(auth);
-        Book b = new Book("C001", "11111", authors, "MPP", true);
-        return b.getAvailability();
+        return DataStorageFactory.getBookByIsnb(isbn) != null;
+
     }
-    
-    @FXML
-    public void back(ActionEvent event) throws IOException {
-    	switch(Memory.getRole()) {
-    	case LIBRARIAN:
-    		EventHandler.login(event, this, Role.LIBRARIAN);
-    		break;
-    	case BOTH:
-    		EventHandler.login(event, this, Role.BOTH);
-    		break;
-    	case ADMIN:
-    		// this should be unreachable
-    	}
-    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         // Create list of member
-        members = new ArrayList<>();
-        LibraryMember member = new LibraryMember();
-        member.setMemberId("2");
-        member.setFirstName("Ganbat");
-        member.setLastName("Bayar");
-        member.setPhoneNumber("123");
-        Address add = new Address("1000N 4th Street", "Fairfield", "IA", "52557");
-        member.setAddress(add);
-        members.add(member);
+        members = DataStorageFactory.getMembers();
+        System.out.println(members.size());
+    }
+
+    public void back(ActionEvent event) throws IOException {
+        switch(Memory.getRole()) {
+            case LIBRARIAN:
+                EventHandler.login(event, this, Role.LIBRARIAN);
+                break;
+            case BOTH:
+                EventHandler.login(event, this, Role.BOTH);
+                break;
+            case ADMIN:
+                // this should be unreachable
+        }
     }
 }

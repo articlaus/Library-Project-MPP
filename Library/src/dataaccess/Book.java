@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Book implements Serializable {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -8998327748244130113L;
-	private String copyNumber;
+     *
+     */
+    private static final long serialVersionUID = -8998327748244130113L;
+    private String copyNumber;
     private String isbn;
     private List<Author> authors;
     private String title;
@@ -19,12 +19,13 @@ public class Book implements Serializable {
     public Book() {
     }
 
-    public Book(String copyNumber, String isbn, List<Author> authors, String title, Boolean availability) {
+    public Book(String copyNumber, String isbn, List<Author> authors, String title, Boolean availability, Integer checkOutDay) {
         this.copyNumber = copyNumber;
         this.isbn = isbn;
         this.authors = authors;
         this.title = title;
         this.availability = availability;
+        this.checkOutDay = checkOutDay;
     }
 
     public String getCopyNumber() {

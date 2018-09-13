@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.CheckPrinterController">
+   <children>
+      <Label layoutX="37.0" layoutY="58.0" text="Select Library Member : " />
+      <Label layoutX="128.0" layoutY="24.0" text="Checkout Record Printer" />
+      <Label layoutX="95.0" layoutY="88.0" text="or" />
+      <Label layoutX="37.0" layoutY="120.0" text="Enter Member Id :" />
+      <ComboBox fx:id="cbxMember" layoutX="182.0" layoutY="54.0" prefWidth="150.0" promptText="Select Member" />
+      <TextField fx:id="txtId" layoutX="183.0" layoutY="116.0" promptText="Enter Member Id" />
+      <Button fx:id="btn" layoutX="163.0" layoutY="167.0" mnemonicParsing="false" text="Print" />
+   </children>
+</AnchorPane>

@@ -39,15 +39,15 @@ public class MemberAddController {
     @FXML
     public void createMember(ActionEvent event) {
         LibraryMember member = new LibraryMember();
-        
+
         String id = txtID.getText();
         LibraryMember duplicate = DataStorageFactory.readMember(id);
         if (duplicate != null) {
-        	EventHandler.displayErrorMessage("Duplicate ID", "The member ID is already being used. Please specify a different ID");
-        	return;
+            EventHandler.displayErrorMessage("Duplicate ID", "The member ID is already being used. Please specify a different ID");
+            return;
         }
         // set member info
-        member.setMemberId(txtID.getText());
+        member.setMemberId(Long.valueOf(txtID.getText()));
         member.setFirstName(txtFirstName.getText());
         member.setLastName(txtLastName.getText());
         member.setPhoneNumber(txtTelephone.getText());
@@ -59,36 +59,36 @@ public class MemberAddController {
         address.setStreet(txtStreet.getText());
         address.setZip(txtZip.getText());
         member.setAddress(address);
-        
+
         // write member to file
         DataStorageFactory.saveMember(member);
     }
-    
+
     @FXML
     public void clear(ActionEvent event) {
-    	System.out.println("Clearing fields");
-    	txtID.setText("");
-    	txtFirstName.setText("");
-    	txtLastName.setText("");
-    	txtStreet.setText("");
-    	txtCity.setText("");
-    	txtState.setText("");
-    	txtZip.setText("");
+        System.out.println("Clearing fields");
+        txtID.setText("");
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtStreet.setText("");
+        txtCity.setText("");
+        txtState.setText("");
+        txtZip.setText("");
     }
-    
+
     @FXML
     public void back(ActionEvent event) throws IOException {
-    	switch(Memory.getRole()) {
-    	case LIBRARIAN:
-    		// this should be unreachable
-    		break;
-    	case BOTH:
-    		EventHandler.login(event, this, Role.BOTH);
-    		break;
-    	case ADMIN:
-    		EventHandler.login(event, this, Role.ADMIN);
-    		break;	
-    	}
+        switch (Memory.getRole()) {
+            case LIBRARIAN:
+                // this should be unreachable
+                break;
+            case BOTH:
+                EventHandler.login(event, this, Role.BOTH);
+                break;
+            case ADMIN:
+                EventHandler.login(event, this, Role.ADMIN);
+                break;
+        }
     }
 
 
