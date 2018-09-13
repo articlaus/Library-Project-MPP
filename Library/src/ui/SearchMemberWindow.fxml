@@ -7,26 +7,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="514.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.SearchBookWindowController">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.SearchMemberWindowController">
     <children>
-        <Label layoutX="124.0" layoutY="55.0" text="Search Book">
+        <Label layoutX="127.0" layoutY="75.0" text="Search Member">
             <font>
                 <Font size="18.0" />
             </font>
         </Label>
-        <Label layoutX="42.0" layoutY="118.0" text="ISBN:" />
-        <TextField fx:id="txtIsbn" layoutX="101.0" layoutY="113.0" />
-        <Button fx:id="btnSearch" layoutX="309.0" layoutY="113.0" mnemonicParsing="false" onAction="#onActionHandle" text="Search" />
-        <TableView fx:id="tbBook" layoutX="42.0" layoutY="165.0" prefHeight="256.0" prefWidth="571.0">
-            <columns>
-                <TableColumn fx:id="IsbnCol" prefWidth="75.0" text="ISBN" />
-                <TableColumn fx:id="bookTitleCol" prefWidth="100.0" text="Book Title" />
-                <TableColumn fx:id="copyNumberCol" prefWidth="100.0" text="Copy Number" />
-                <TableColumn fx:id="memberIdCol" prefWidth="100.0" text="MemberID" />
-                <TableColumn fx:id="dueDateCol" prefWidth="100.0" text="Due Date" />
-                <TableColumn fx:id="isDueCol" prefWidth="100.0" text="Is Overdue" />
-            </columns>
-        </TableView>
-      <Button layoutX="285.0" layoutY="447.0" mnemonicParsing="false" onAction="#back" text="Back" />
+        <Label layoutX="45.0" layoutY="138.0" text="Member ID:" />
+        <TextField fx:id="txtMemberID" layoutX="125.0" layoutY="133.0" prefHeight="27.0" prefWidth="146.0" />
+        <Button layoutX="279.0" layoutY="133.0" mnemonicParsing="false" onAction="#searchMember" text="Search" />
+      <Button layoutX="247.0" layoutY="323.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Button layoutX="127.0" layoutY="323.0" mnemonicParsing="false" onAction="#printRecord" text="Print Record" />
+      <Label fx:id="memberInfo" alignment="TOP_LEFT" layoutX="125.0" layoutY="167.0" prefHeight="147.0" prefWidth="146.0" />
     </children>
 </AnchorPane>

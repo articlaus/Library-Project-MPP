@@ -12,7 +12,7 @@
     <children>
         <Label layoutX="168.0" layoutY="27.0" text="Create Member" />
         <Label alignment="CENTER_RIGHT" layoutX="50.0" layoutY="75.0" prefHeight="27.0" prefWidth="96.0" text="Member Id:" />
-        <TextField fx:id="txtId" layoutX="160.0" layoutY="75.0" prefHeight="25.0" prefWidth="187.0" promptText="Please Enter Member Id" />
+        <TextField fx:id="txtID" layoutX="160.0" layoutY="75.0" prefHeight="25.0" prefWidth="187.0" promptText="Please Enter Member Id" />
         <Label alignment="CENTER_RIGHT" layoutX="50.0" layoutY="105.0" prefHeight="27.0" prefWidth="96.0" text="First Name:" />
         <TextField fx:id="txtFirstName" layoutX="160.0" layoutY="105.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter First Name" />
         <Label alignment="CENTER_RIGHT" layoutX="50.0" layoutY="135.0" prefHeight="27.0" prefWidth="96.0" text="Last Name:" />
@@ -26,7 +26,7 @@
         <TextField fx:id="txtState" layoutX="160.0" layoutY="225.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter State" />
         <TextField fx:id="txtTelephone" layoutX="160.0" layoutY="255.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter Telephone Number" />
         <Button fx:id="btnSave" layoutX="160.0" layoutY="340.0" mnemonicParsing="false" onAction="#createMember" text="Save" />
-        <Button fx:id="btnClear" layoutX="216.0" layoutY="340.0" mnemonicParsing="false" text="Clear" />
+        <Button fx:id="btnClear" layoutX="216.0" layoutY="340.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
       	<Label alignment="CENTER_RIGHT" layoutX="50.0" layoutY="285.0" prefHeight="27.0" prefWidth="96.0" text="Zip :" />
       	<TextField fx:id="txtZip" layoutX="160.0" layoutY="285.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter Zip" />
       <Button layoutX="298.0" layoutY="340.0" mnemonicParsing="false" onAction="#back" text="Back" />
