@@ -57,10 +57,10 @@ public class DataStorageFactory {
         List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
         members.add(libraryMember);
         write(members, LIB_MEM);
-        readMember();
+        displayMembers();
     }
 
-    public static void readMember() {
+    public static void displayMembers() {
         @SuppressWarnings("unchecked")
         List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -72,6 +72,15 @@ public class DataStorageFactory {
         alert.setHeaderText("Member Created");
         alert.setContentText("Successfully created a Library Member\n" + txt);
         alert.showAndWait();
+    }
+    
+    public static LibraryMember readMember (String memberID) {
+    	List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
+    	for(LibraryMember m : members) {
+    		if(m.getMemberId().equals(memberID))
+    			return m;
+    	}
+    	return null;
     }
 
     public static Book getBookByIsnb(String isbn) {
@@ -178,7 +187,7 @@ public class DataStorageFactory {
         //For Library Members
         List<LibraryMember> members = new ArrayList<>();
         LibraryMember member = new LibraryMember();
-        member.setMemberId(1L);
+        member.setMemberId("1");
         member.setFirstName("Ganbat");
         member.setLastName("Bayar");
         member.setPhoneNumber("123");

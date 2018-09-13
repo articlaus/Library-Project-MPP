@@ -7,6 +7,7 @@ public class Memory {
 	
     private static List<Object> tempCollection = new ArrayList<>();
     private static Role currentRole;
+    private static LibraryMember member;
     
     public static void addObjectToMem(Object o) {
     	tempCollection.add(o);
@@ -29,4 +30,12 @@ public class Memory {
     public static Role getRole() {
     	return currentRole;
     }
+
+	public static LibraryMember getMember() {
+		return member;
+	}
+
+	public static void setMember(LibraryMember mem) {
+		member = mem;
+	}
 }
