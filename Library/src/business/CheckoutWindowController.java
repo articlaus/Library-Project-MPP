@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -31,7 +32,7 @@ public class CheckoutWindowController implements Initializable {
     private Label lblMessage;
 
     @FXML
-    void btnCheckoutHandle(ActionEvent event) {
+    void btnCheckoutHandle(ActionEvent event) throws IOException {
         String memID = txtMemberID.getText();
         String isbn = txtIsbn.getText();
         if (!checkMemberIdExist(memID)) {
@@ -41,21 +42,19 @@ public class CheckoutWindowController implements Initializable {
                 lblMessage.setText("The book is not available");
             } else {
                 Book b = DataStorageFactory.getBookByIsnb(isbn);
+                //----------
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                 Date date = new Date();
                 Calendar c = Calendar.getInstance();
                 c.setTime(date);
                 c.add(Calendar.DATE, b.getCheckOutDay());
                 CheckoutEntry ce = new CheckoutEntry(memID, isbn, b.getTitle(), b.getCopyNumber(), formatter.format(date), formatter.format(c.getTime()));
+                DataStorageFactory.updateAvailabilityOfBook(isbn, false);
                 DataStorageFactory.addCheckoutEntry(ce);
-                System.out.println("A new entry is added");
-                //*****	  popup the CheckoutRecord window
+                EventHandler.addCheckoutEntry(event, this);
             }
         }
-
-
     }
-
 
     boolean checkMemberIdExist(String memberID) {
         for (LibraryMember m : members) {
@@ -66,18 +65,8 @@ public class CheckoutWindowController implements Initializable {
     }
 
     boolean checkBookExist(String isbn) {
-        //Book b = DataStorageFactory.getBookByIsnb(isbn);
-        Address add = new Address("1000N 4th Street", "Fairfield", "IA", "52557");
-        List<Author> authors = new ArrayList<>();
-        Author auth = new Author();
-        auth.setFirstName("Ganbat");
-        auth.setLastName("Bayar");
-        auth.setAddress(add);
-        auth.setShortBio("Decent Author");
-        auth.setCredentials("Creds");
-        authors.add(auth);
-        Book b = new Book("C001", "11111", authors, "MPP", true);
-        return b.getAvailability();
+        return DataStorageFactory.getBookByIsnb(isbn) != null;
+
     }
 
 

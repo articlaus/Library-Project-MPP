@@ -14,7 +14,6 @@ public class CheckoutEntry implements Serializable {
     String bookTitle;
     String isDue;
 
-
     public CheckoutEntry(String memberID, String isbn, String bookTitle, String copyNumber, String checkoutDate, String dueDate) {
         this.memberID = memberID;
         this.isbn = isbn;
@@ -91,9 +90,5 @@ public class CheckoutEntry implements Serializable {
             isDue = "overdue";
         }
         return isDue;
-    }
-
-    public void setIsDue(String isDue) {
-        this.isDue = isDue;
     }
 }
