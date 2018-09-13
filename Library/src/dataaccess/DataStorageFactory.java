@@ -52,7 +52,7 @@ public class DataStorageFactory {
         }
     }
 
-    public static void saveMemebr(LibraryMember libraryMember) {
+    public static void saveMember(LibraryMember libraryMember) {
         @SuppressWarnings("unchecked")
 		List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
         members.add(libraryMember);
