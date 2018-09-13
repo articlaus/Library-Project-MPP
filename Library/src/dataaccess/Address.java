@@ -3,7 +3,11 @@ package dataaccess;
 import java.io.Serializable;
 
 public class Address implements Serializable {
-    private String street;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6936871137216214821L;
+	private String street;
     private String city;
     private String state;
     private String zip;

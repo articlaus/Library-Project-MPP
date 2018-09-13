@@ -2,7 +2,11 @@ package dataaccess;
 
 public class Author extends Person {
 
-    private String credentials;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4676601231343871459L;
+	private String credentials;
     private String shortBio;
 
     public Author() {
