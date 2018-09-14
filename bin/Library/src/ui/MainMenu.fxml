@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #bbbbbb;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="109.0" layoutY="37.0" text="Main Menu">
+         <font>
+            <Font name="Verdana Bold" size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="addMemberButton" layoutX="109.0" layoutY="100.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="182.0" text="Add Member" />
+      <Button fx:id="deleteMemberButton" layoutX="109.0" layoutY="140.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="182.0" text="Delete Member" />
+      <Button fx:id="addBook" layoutX="109.0" layoutY="220.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="182.0" text="Add Book" />
+      <Button fx:id="editMember" layoutX="109.0" layoutY="180.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="182.0" text="Edit Member" />
+      <Button fx:id="checkoutBook" layoutX="109.0" layoutY="260.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="182.0" text="Checkout Book" />
+      <Button fx:id="deleteBook" layoutX="109.0" layoutY="300.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="182.0" text="Delete Book" />
+   </children>
+</AnchorPane>

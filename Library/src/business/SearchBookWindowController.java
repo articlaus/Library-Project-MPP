@@ -2,6 +2,8 @@ package business;
 
 import dataaccess.CheckoutEntry;
 import dataaccess.DataStorageFactory;
+import dataaccess.Memory;
+import dataaccess.Role;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -76,7 +78,17 @@ public class SearchBookWindowController {
 
     @FXML
     public void back(ActionEvent event) throws IOException {
-        EventHandler.checkoutBook(event, this);
-    }
-
+    	switch (Memory.getRole()) {
+        case LIBRARIAN:
+        	EventHandler.login(event, this, Role.LIBRARIAN);
+            break;
+        case BOTH:
+            EventHandler.login(event, this, Role.BOTH);
+            break;
+        case ADMIN:
+            EventHandler.login(event, this, Role.ADMIN);
+            break;
+    	}
+   }
 }
+    

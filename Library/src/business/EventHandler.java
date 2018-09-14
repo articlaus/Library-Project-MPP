@@ -89,7 +89,7 @@ public class EventHandler {
 	public static void logout (ActionEvent event, Object caller) throws IOException{
 		Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	AnchorPane root = FXMLLoader.load(caller.getClass().getResource("../ui/Login.fxml"));
-		Scene scene = new Scene(root,400,400);
+		Scene scene = new Scene(root);
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -98,7 +98,7 @@ public class EventHandler {
 	public static void checkoutBook (ActionEvent event, Object caller) throws IOException{
 		Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	AnchorPane root = FXMLLoader.load(caller.getClass().getResource("../ui/CheckoutWindow.fxml"));
-		Scene scene = new Scene(root,400,400);
+		Scene scene = new Scene(root);
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -107,7 +107,16 @@ public class EventHandler {
 	public static void searchMember(ActionEvent event, Object caller) throws IOException{
 		Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	AnchorPane root = FXMLLoader.load(caller.getClass().getResource("../ui/SearchMemberWindow.fxml"));
-		Scene scene = new Scene(root,400,400);
+		Scene scene = new Scene(root);
+		primaryStage.setResizable(false);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+	
+	public static void searchBook(ActionEvent event, Object caller) throws IOException{
+		Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	AnchorPane root = FXMLLoader.load(caller.getClass().getResource("../ui/SearchBookWindow.fxml"));
+		Scene scene = new Scene(root);
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.show();

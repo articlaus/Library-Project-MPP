@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class DataStorageFactory {
 
-    private static String OUTPUT_DIR = System.getProperty("user.dir") + "/Library/src/dataaccess/storage/";
+    private static String OUTPUT_DIR = System.getProperty("user.dir") + "/src/dataaccess/storage/";
     private static String LIB_MEM = "LibraryMember.txt";
     private static String BKS = "Book.txt";
     private static String AUTH = "Author.txt";

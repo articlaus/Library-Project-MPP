@@ -55,5 +55,11 @@ public class AdminMenuController {
     	EventHandler.addCopy(event, this);
     	Memory.setRole(Role.ADMIN);
     }
+    
+    @FXML
+    public void clickSearchBookButton(ActionEvent event) throws IOException {
+    	EventHandler.searchBook(event, this);
+    	Memory.setRole(Role.ADMIN);
+    }
 
 }

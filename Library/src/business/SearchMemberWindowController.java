@@ -31,18 +31,20 @@ public class SearchMemberWindowController {
     		memberInfo.setText(member.toString());
     }
 
+    @FXML
     public void back(ActionEvent event) throws IOException {
-    	switch(Memory.getRole()) {
-    	case LIBRARIAN:
-    		EventHandler.login(event, this, Role.LIBRARIAN);
-    		break;
-    	case BOTH:
-    		EventHandler.login(event, this, Role.BOTH);
-    		break;
-    	case ADMIN:
-    		// this should be unreachable
+    	switch (Memory.getRole()) {
+        case LIBRARIAN:
+            EventHandler.login(event, this, Role.LIBRARIAN);
+            break;
+        case BOTH:
+            EventHandler.login(event, this, Role.BOTH);
+            break;
+        case ADMIN:
+            EventHandler.login(event, this, Role.ADMIN);
+            break;
     	}
-    }
+   }
 
     @FXML
     void printRecord(ActionEvent event) throws IOException{

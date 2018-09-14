@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
+
 <AnchorPane maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #bbbbbb;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.AdminMenuController">
    <children>
-      <Button fx:id="addMemberButton" layoutX="109.0" layoutY="75.0" mnemonicParsing="false" onAction="#clickAddMemberButton" prefHeight="27.0" prefWidth="182.0" text="Add Member" />
-      <Button fx:id="addBookButton" layoutX="109.0" layoutY="125.0" mnemonicParsing="false" onAction="#clickAddBookButton" prefHeight="27.0" prefWidth="182.0" text="Add Book" />
-      <Button fx:id="checkoutBookButton" layoutX="110.0" layoutY="225.0" mnemonicParsing="false" opacity="0.5" prefHeight="27.0" prefWidth="182.0" text="Checkout Book" />
+      <Button fx:id="addMemberButton" layoutX="109.0" layoutY="26.0" mnemonicParsing="false" onAction="#clickAddMemberButton" prefHeight="27.0" prefWidth="182.0" text="Add Member" />
+      <Button fx:id="addBookButton" layoutX="109.0" layoutY="76.0" mnemonicParsing="false" onAction="#clickAddBookButton" prefHeight="27.0" prefWidth="182.0" text="Add Book" />
+      <Button fx:id="checkoutBookButton" layoutX="110.0" layoutY="176.0" mnemonicParsing="false" opacity="0.5" prefHeight="27.0" prefWidth="182.0" text="Checkout Book" />
       <Button fx:id="logout" layoutX="170.0" layoutY="350.0" mnemonicParsing="false" onAction="#clickLogout" text="Logout" />
-      <Button fx:id="searchMemberButton" layoutX="110.0" layoutY="275.0" mnemonicParsing="false" onAction="#clickSearchMemberButton" prefHeight="27.0" prefWidth="182.0" text="Search Member" />
-      <Button layoutX="109.0" layoutY="175.0" mnemonicParsing="false" onAction="#clickAddCopyButton" prefHeight="27.0" prefWidth="182.0" text="Add Book Copy" />
+      <Button fx:id="searchMemberButton" layoutX="110.0" layoutY="226.0" mnemonicParsing="false" onAction="#clickSearchMemberButton" prefHeight="27.0" prefWidth="182.0" text="Search Member" />
+      <Button layoutX="109.0" layoutY="126.0" mnemonicParsing="false" onAction="#clickAddCopyButton" prefHeight="27.0" prefWidth="182.0" text="Add Book Copy" />
+      <Button fx:id="searchBookButton" layoutX="109.0" layoutY="281.0" mnemonicParsing="false" onAction="#clickSearchBookButton" prefHeight="27.0" prefWidth="182.0" text="Search Book" />
    </children>
 </AnchorPane>

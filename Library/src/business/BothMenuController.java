@@ -60,4 +60,10 @@ public class BothMenuController {
     	EventHandler.addCopy(event, this);
     	Memory.setRole(Role.BOTH);
     }
+    
+    @FXML
+    public void clickSearchBookButton(ActionEvent event) throws IOException {
+    	EventHandler.searchBook(event, this);
+    	Memory.setRole(Role.BOTH);
+    }
 }
