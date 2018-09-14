@@ -9,7 +9,8 @@ import java.util.UUID;
 
 public class DataStorageFactory {
 
-    private static String OUTPUT_DIR = System.getProperty("user.dir") + "/src/dataaccess/storage/";
+    private static String OUTPUT_DIR = System.getProperty("user.dir") + "/Library/src/dataaccess/storage/";
+    //    private static String OUTPUT_DIR = "C:/Users/Arti/IdeaProjects/Library-Project-MPP/Library/src/dataaccess/storage";
     private static String LIB_MEM = "LibraryMember.txt";
     private static String BKS = "Book.txt";
     private static String AUTH = "Author.txt";
@@ -78,8 +79,18 @@ public class DataStorageFactory {
     public static LibraryMember readMember(String memberID) {
         List<LibraryMember> members = (List<LibraryMember>) read(LIB_MEM);
         for (LibraryMember m : members) {
-            if (m.getMemberId().equals(memberID))
+            if (m.getMemberId().equals(Long.valueOf(memberID)))
                 return m;
+        }
+        return null;
+    }
+
+    public static List<CheckoutEntry> getCheckoutEntries(Long id) {
+        List<CheckoutRecord> checkoutRecords = (List<CheckoutRecord>) read(CKR);
+        for (CheckoutRecord checkoutRecord : checkoutRecords) {
+            if (checkoutRecord.getMemberId().equals(id)) {
+                return checkoutRecord.getEntryList();
+            }
         }
         return null;
     }
@@ -157,18 +168,20 @@ public class DataStorageFactory {
         }
     }
 
-    public static CheckoutEntry getCheckoutEntryByIsbn(String isbn) {
+    public static List<CheckoutEntry> getCheckoutEntryByIsbn(String isbn) {
         try {
             List<CheckoutEntry> entries = (List<CheckoutEntry>) read(CHK);
+            List<CheckoutEntry> rEntries = new ArrayList<>();
             CheckoutEntry ret = null;
             Integer count = 0;
             for (CheckoutEntry entry : entries) {
                 if (entry.getIsbn().toLowerCase().equals(isbn.toLowerCase())) {
                     ret = entry;
+                    rEntries.add(ret);
                     count++;
                 }
             }
-            return ret;
+            return rEntries;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -198,9 +211,8 @@ public class DataStorageFactory {
         List<CheckoutRecord> records = (List<CheckoutRecord>) read(CKR);
         for (CheckoutRecord checkoutRecord : records) {
             if (checkoutRecord.memberId.equals(record.memberId)) {
-                checkoutRecord = record;
                 records.remove(checkoutRecord);
-                records.add(checkoutRecord);
+                records.add(record);
             }
         }
         write(records, CKR);

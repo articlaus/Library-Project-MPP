@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SearchBookWindowController {
 
@@ -44,8 +45,8 @@ public class SearchBookWindowController {
         String isbn = txtIsbn.getText();
 
         System.out.println(isbn);
-        CheckoutEntry ce = DataStorageFactory.getCheckoutEntryByIsbn(isbn);
-
+//        CheckoutEntry ce = DataStorageFactory.getCheckoutEntryByIsbn(isbn);
+        List<CheckoutEntry> ces = DataStorageFactory.getCheckoutEntryByIsbn(isbn);
 //        CheckoutEntry ce = new CheckoutEntry("M001", "11111", "MPP", "C001", "08/15/2018", "08/20/2018");
 
         IsbnCol.setMinWidth(80);
@@ -73,22 +74,22 @@ public class SearchBookWindowController {
         dueDateCol.setCellValueFactory(new PropertyValueFactory<CheckoutEntry, String>("dueDate"));
         isDueCol.setCellValueFactory(new PropertyValueFactory<CheckoutEntry, String>("isDue"));
 
-        tbBook.setItems(FXCollections.observableArrayList(ce));
+        tbBook.setItems(FXCollections.observableArrayList(ces));
     }
 
     @FXML
     public void back(ActionEvent event) throws IOException {
-    	switch (Memory.getRole()) {
-        case LIBRARIAN:
-        	EventHandler.login(event, this, Role.LIBRARIAN);
-            break;
-        case BOTH:
-            EventHandler.login(event, this, Role.BOTH);
-            break;
-        case ADMIN:
-            EventHandler.login(event, this, Role.ADMIN);
-            break;
-    	}
-   }
+        switch (Memory.getRole()) {
+            case LIBRARIAN:
+                EventHandler.login(event, this, Role.LIBRARIAN);
+                break;
+            case BOTH:
+                EventHandler.login(event, this, Role.BOTH);
+                break;
+            case ADMIN:
+                EventHandler.login(event, this, Role.ADMIN);
+                break;
+        }
+    }
 }
     

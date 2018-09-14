@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        DataStorageFactory.createInitialData();
+//        DataStorageFactory.createInitialData();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("ui/Login.fxml"));
         primaryStage.setTitle("Library Application");
         primaryStage.setScene(new Scene(root));

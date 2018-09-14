@@ -85,11 +85,16 @@ public class CheckoutEntry implements Serializable {
     }
 
     public String getIsDue() throws ParseException {
-        SimpleDateFormat smt = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat smt = new SimpleDateFormat("dd/MM/yyyy");
         Date dueDate = smt.parse(this.dueDate);
         String isDue = "";
         if (System.currentTimeMillis() > dueDate.getTime()) {
+            System.out.println(this.dueDate + "\n");
+            System.out.println(dueDate.getTime() + "- Due\n");
+            System.out.println(System.currentTimeMillis() + "-current");
             isDue = "overdue";
+        } else {
+            isDue = "Not Overdue";
         }
         return isDue;
     }
